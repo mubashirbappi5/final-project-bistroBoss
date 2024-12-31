@@ -5,6 +5,7 @@ import {
   } from "react-router-dom";
 import Root from '../Layouts/Root';
 import Home from '../Pages/Home/Homepage/Home';
+import OurMenu from '../Pages/OurMenu/Menu/OurMenu';
 
  export const router = createBrowserRouter([
     {
@@ -13,6 +14,11 @@ import Home from '../Pages/Home/Homepage/Home';
       children:[{
         index:true,
         element:<Home/>
-      }]
+      },
+    {
+      path:'/menu',
+      element:<OurMenu/>
+
+    }]
     },
   ]);

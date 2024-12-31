@@ -1,9 +1,19 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 const Navber = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const routetitle = {
+    "/":'Bistro Boss | Home',
+    "/menu":'Bistro Boss | Menu'
+  }
+  const title = routetitle[location.pathname] || 'Bistro Boss'
     const links = <>
+    <li><NavLink to={'/'}>Home</NavLink></li>
+    <li><NavLink to={'/menu'}>Our Menu</NavLink></li>
     
-    <li><a>Item 3</a></li>
     <li><a>Item 3</a></li>
     <li><a>Item 3</a></li>
     <li><a>Item 3</a></li>
@@ -11,6 +21,9 @@ const Navber = () => {
     </>
     return (
         <div className='mx-auto'>
+          <Helmet>
+            <title>{title}</title>
+          </Helmet>
             <div className="navbar fixed  z-50 bg-black bg-opacity-30 md:text-white">
   <div className="navbar-start">
     <div className="dropdown">
