@@ -7,12 +7,15 @@ const Navber = () => {
   const location = useLocation()
   const routetitle = {
     "/":'Bistro Boss | Home',
-    "/menu":'Bistro Boss | Menu'
+    "/menu":'Bistro Boss | Menu',
+    "/order":'Bistro Boss | Order' 
   }
   const title = routetitle[location.pathname] || 'Bistro Boss'
     const links = <>
     <li><NavLink to={'/'}>Home</NavLink></li>
     <li><NavLink to={'/menu'}>Our Menu</NavLink></li>
+    
+    <li><NavLink to={'/order'}>Order Now</NavLink></li>
     
     <li><a>Item 3</a></li>
     <li><a>Item 3</a></li>
