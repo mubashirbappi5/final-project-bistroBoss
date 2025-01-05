@@ -1,8 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import useAuth from '../../Hooks/UseAuth';
 
 const Navber = () => {
+  const {signoutUser,user} = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const routetitle = {
@@ -16,12 +18,13 @@ const Navber = () => {
     <li><NavLink to={'/menu'}>Our Menu</NavLink></li>
     
     <li><NavLink to={'/order'}>Order Now</NavLink></li>
+    <li><NavLink to={'/contact'}>Contact Us</NavLink></li>
     
-    <li><a>Item 3</a></li>
-    <li><a>Item 3</a></li>
-    <li><a>Item 3</a></li>
-    <li><a>Item 3</a></li>
+    
     </>
+    const handlelogout = ()=>{
+      signoutUser()
+    }
     return (
         <div className='mx-auto'>
           <Helmet>
@@ -51,7 +54,7 @@ const Navber = () => {
        
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">daisyUI</a>
+    <a className="btn btn-ghost text-xl">{user?.email}</a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -59,7 +62,8 @@ const Navber = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+    <Link to={'/register'} className="btn bg-[#D1A054] border-none">Register</Link>
+    <button onClick={handlelogout}>log out</button>
   </div>
 </div>
             

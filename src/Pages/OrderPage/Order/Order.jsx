@@ -7,13 +7,21 @@ import Card from '../../Shared/Card';
 
 const Order = () => {
     const [tabindex,settabinsex] = useState(0)
+    const [page,setpage] = useState(1)
     const [menu] = UseMenu()
+    
+   
     const pizzamenu = menu.filter(items=>items.category==='pizza')
     const saladmenu = menu.filter(items=>items.category==='salad')
     const soupmenu = menu.filter(items=>items.category==='soup')
     const drinksmenu = menu.filter(items=>items.category==='drinks')
     const dessertmenu = menu.filter(items=>items.category==='dessert')
+    const saladpage = Math.ceil(saladmenu.length/4)
 
+    const paginatedSaladMenu = saladmenu.slice(
+      (page - 1) * 4,
+      page * 4
+  );
     return (
         <div>
           <OrderBanner/>
@@ -30,9 +38,14 @@ const Order = () => {
     <TabPanel>
     <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-10'>
       {
-        saladmenu.map(item=><Card item={item}></Card>)
+        paginatedSaladMenu.map(item=><Card item={item}></Card>)
       }
       </section>
+      <div className="join">
+  <button onClick={()=>setpage(page-1)}  disabled={page <= 1} className="join-item btn">«</button>
+  <button className="join-item btn">{page}</button>
+  <button onClick={()=>setpage(page+1)} disabled={page >= saladpage} className="join-item btn">»</button>
+</div>
     </TabPanel>
     <TabPanel>
     <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-10'>
