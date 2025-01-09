@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, FacebookAuthProvider, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, FacebookAuthProvider, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { auth } from './../../Firebace/Firebace.init';
  export const AuthContext = createContext()
 const AuthProvider = ({children}) => {
@@ -22,6 +22,10 @@ const AuthProvider = ({children}) => {
   }
   const signinUser = ( email, password)=>{
     return signInWithEmailAndPassword(auth, email, password)
+  }
+  const updateuser = (profile)=>{
+    return updateProfile(auth.currentUser,profile)
+
   }
   useEffect(()=>{
     const unsubscribe = onAuthStateChanged(auth,currentUser=>{
@@ -47,6 +51,7 @@ const AuthProvider = ({children}) => {
       signupUser,
       signinUser,
       signoutUser,
+      updateuser,
       user,
 
     }

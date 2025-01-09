@@ -12,6 +12,7 @@ import Login from '../Pages/Login';
 import Contact from '../Pages/Contact/ContactPage/Contact';
 import Desboard from '../Pages/Desboard/Desboard';
 import Mycarts from '../Pages/Desboard/Mycart/Mycarts';
+import AllUsers from '../Pages/Desboard/All users/AllUsers';
 
  export const router = createBrowserRouter([
     {
@@ -52,6 +53,11 @@ import Mycarts from '../Pages/Desboard/Mycart/Mycarts';
         {
           path:'mycart',
           element:<Mycarts/>,
+
+        },
+        {
+          path:'alluser',
+          element:<AllUsers/>
 
         }
       ]

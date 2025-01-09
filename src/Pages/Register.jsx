@@ -1,12 +1,15 @@
 import React from 'react';
 import registerbg from '../assets/others/authentication.png';
 import  registerimg from '../assets/others/authentication1-removebg-preview.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from './Shared/SocialLogin';
 import { useForm,  } from "react-hook-form"
 import useAuth from '../Hooks/UseAuth';
+import useAxiospublic from '../Hooks/useAxiospublic';
 const Register = () => {
-  const {signupUser} = useAuth();
+  const {signupUser,updateuser} = useAuth();
+  const axiospub = useAxiospublic();
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -20,7 +23,30 @@ const Register = () => {
     signupUser(data.email,data.password)
     .then(res=>{
       console.log(res.user)
+      const profile = {
+        displayName:data.name,
+        photoURL:data.url,
+
+      }
+      updateuser(profile)
+      .then(res=>{
+        console.log(res.user)
+      })
+
+      const userinfo = {
+        name:data.name,
+        email:data.email,
+
+        
+      }
+      axiospub.post('/users',userinfo)
+      .then(res=>{
+        console.log(res.data)
+      })
       reset();
+      navigate('/')
+
+
       
   })
   .catch(error=>{
@@ -40,6 +66,13 @@ const Register = () => {
             <span className="label-text">Name</span>
           </label>
           <input type="text" placeholder="Enter Name" name='name' {...register("name",{required:true})} className="input input-bordered" required />
+          {errors.name && <span className='text-sm text-red-500'>This field is required</span>}
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">PhotoURL</span>
+          </label>
+          <input type="text" placeholder="Enter photo url" name='url' {...register("url",{required:true})} className="input input-bordered" required />
           {errors.name && <span className='text-sm text-red-500'>This field is required</span>}
         </div>
         <div className="form-control">
