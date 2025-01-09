@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/UseAuth';
+import { FaCartShopping } from 'react-icons/fa6';
+import useCarts from '../../Hooks/useCarts';
 
 const Navber = () => {
+ const [cart] = useCarts()
   const {signoutUser,user} = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
+ 
   const routetitle = {
     "/":'Bistro Boss | Home',
     "/menu":'Bistro Boss | Menu',
@@ -19,12 +23,21 @@ const Navber = () => {
     
     <li><NavLink to={'/order'}>Order Now</NavLink></li>
     <li><NavLink to={'/contact'}>Contact Us</NavLink></li>
+   <li ><NavLink to={'desboard'}><button className="flex gap-2 ">
+    
+    <FaCartShopping />
+    <div className="badge badge-secondary">+{cart.length}</div>
+ 
+</button></NavLink></li>
     
     
     </>
     const handlelogout = ()=>{
       signoutUser()
     }
+
+
+
     return (
         <div className='mx-auto'>
           <Helmet>

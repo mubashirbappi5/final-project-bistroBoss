@@ -2,18 +2,21 @@ import React, { useEffect, useState } from 'react';
 import SocialLogin from './Shared/SocialLogin';
 import registerbg from '../assets/others/authentication.png';
 import loginimg from '../assets/others/authentication2.png'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import useAuth from '../Hooks/UseAuth';
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const { signinUser} = useAuth()
+  const navigate = useNavigate()
+    const location = useLocation()
+  const froms = location.state?.from?.pathname || '/';
   useEffect(()=>{
     loadCaptchaEnginge(6); 
   },[])
   const handlecapta = (e)=>{
-    const uservalid = e.target.value
+    const uservalid = e.target.value 
     if (validateCaptcha(uservalid)==true) {
      
       setDisabled(false)
@@ -32,11 +35,15 @@ const Login = () => {
     signinUser(email,password)
     .then(res=>{
       console.log(res.user)
+     
       e.target.reset()
+     
   })
+ 
   .catch(error=>{
       console.log(error)
   })
+  navigate(froms, { replace: true });
   }
     return (
         <div>

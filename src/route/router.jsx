@@ -10,6 +10,8 @@ import Order from '../Pages/OrderPage/Order/Order';
 import Register from '../Pages/Register';
 import Login from '../Pages/Login';
 import Contact from '../Pages/Contact/ContactPage/Contact';
+import Desboard from '../Pages/Desboard/Desboard';
+import Mycarts from '../Pages/Desboard/Mycart/Mycarts';
 
  export const router = createBrowserRouter([
     {
@@ -43,4 +45,15 @@ import Contact from '../Pages/Contact/ContactPage/Contact';
     }
   ]
     },
+    {
+      path:'desboard',
+      element:<Desboard/>,
+      children:[
+        {
+          path:'mycart',
+          element:<Mycarts/>,
+
+        }
+      ]
+    }
   ]);

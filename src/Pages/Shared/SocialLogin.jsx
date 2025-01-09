@@ -1,18 +1,21 @@
 import React, { useContext } from 'react';
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
 import useAuth from '../../Hooks/UseAuth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
  
 const SocialLogin = () => {
+   
     const navigate = useNavigate()
+    const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
     const {googlelogin,fblogin,gitlogin} = useAuth();
     const handlegoogle = ()=>{
         googlelogin()
         .then(res=>{
             console.log(res.user)
-            navigate('/')
+            navigate(from, { replace: true });
         })
         .catch(error=>{
             console.log(error)
