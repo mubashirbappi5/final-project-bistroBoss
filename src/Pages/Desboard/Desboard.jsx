@@ -16,6 +16,8 @@ const Desboard = () => {
                 <ul className='menu font-semibold'>
                 <li><NavLink to={'/'} >Admin Home</NavLink></li>
                 <li><NavLink to={'alluser'}>All Users</NavLink></li>
+                <li><NavLink to={'additem'}>Add Item</NavLink></li>
+                <li><NavLink to={'manageitem'}>Manage Items</NavLink></li>
                 </ul>
                 </>:<>
                   <ul className='menu font-semibold'>

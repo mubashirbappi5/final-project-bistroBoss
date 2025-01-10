@@ -15,6 +15,9 @@ import Mycarts from '../Pages/Desboard/Mycart/Mycarts';
 import AllUsers from '../Pages/Desboard/All users/AllUsers';
 import PrivateRoute from './PrivateRoute';
 import Adminroute from './Adminroute';
+import AddItem from '../Pages/Desboard/ADD Item/AddItem';
+import ManageItem from '../Pages/Desboard/Manage Item/ManageItem';
+import UpdateMenu from '../Pages/Desboard/Manage Item/UpdateMenu';
 
  export const router = createBrowserRouter([
     {
@@ -24,6 +27,7 @@ import Adminroute from './Adminroute';
         index:true,
         element:<Home/>
       },
+      // guest route
     {
       path:'/menu',
       element:<OurMenu/>
@@ -48,6 +52,7 @@ import Adminroute from './Adminroute';
     }
   ]
     },
+    // user route
     {
       path:'desboard',
       element:<PrivateRoute><Desboard/></PrivateRoute>,
@@ -57,9 +62,26 @@ import Adminroute from './Adminroute';
           element:<PrivateRoute><Mycarts/></PrivateRoute>,
 
         },
+        // admin route
         {
           path:'alluser',
           element:<Adminroute><AllUsers/></Adminroute>
+
+        },
+        {
+          path:'additem',
+          element:<Adminroute><AddItem/></Adminroute>
+
+        },
+        {
+          path:'manageitem',
+          element:<ManageItem/>
+
+        },
+        {
+          path:'manageitem/updatemenu/:id',
+          element:<UpdateMenu/>,
+          loader:({params})=>fetch(`http://localhost:3000/menu/${params.id}`)
 
         }
       ]
