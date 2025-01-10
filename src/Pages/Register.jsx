@@ -4,7 +4,7 @@ import  registerimg from '../assets/others/authentication1-removebg-preview.png'
 import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from './Shared/SocialLogin';
 import { useForm,  } from "react-hook-form"
-import useAuth from '../Hooks/UseAuth';
+import useAuth from '../Hooks/useAuth';
 import useAxiospublic from '../Hooks/useAxiospublic';
 const Register = () => {
   const {signupUser,updateuser} = useAuth();

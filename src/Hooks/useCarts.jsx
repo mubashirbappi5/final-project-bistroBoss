@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import useAxios from './useAxios';
-import useAuth from './UseAuth';
+import useAuth from './useAuth';
 
 const useCarts = () => {
     const axiosscure = useAxios()

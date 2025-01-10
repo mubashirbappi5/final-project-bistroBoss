@@ -1,5 +1,5 @@
 import React from 'react';
-import useAuth from '../../Hooks/UseAuth';
+import useAuth from '../../Hooks/useAuth';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useAxios from '../../Hooks/useAxios';
 import useCarts from '../../Hooks/useCarts';

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import useAuth from '../../Hooks/UseAuth';
+
 import { FaCartShopping } from 'react-icons/fa6';
 import useCarts from '../../Hooks/useCarts';
+import useAuth from '../../Hooks/useAuth';
 
 const Navber = () => {
  const [cart] = useCarts()

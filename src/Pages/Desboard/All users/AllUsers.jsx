@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ShareTitle from '../../Shared/ShareTitle';
 import { useQuery } from '@tanstack/react-query';
 import useAxios from '../../../Hooks/useAxios';
 
 const AllUsers = () => {
+    
     const axisosecure = useAxios()
     const {data:users=[], refetch} = useQuery({
         queryKey:['users'],
         queryFn: async()=>{
-      const res = await axisosecure.get('/users')
+      const res = await axisosecure.get('/users',)
       return res.data
 
         }
@@ -20,6 +21,15 @@ const AllUsers = () => {
         alert ('delete confim')
         refetch()
      })
+    }
+    const makeadmin = (id)=>{
+        axisosecure.patch(`/users/admin/${id}`)
+        .then(res=>{
+         console.log(res.data)
+         if(res.data.modifiedCount >=1){
+            refetch()
+         }
+        })
     }
     return (
         <div>
@@ -37,7 +47,8 @@ const AllUsers = () => {
         <th></th>
         <th>Name</th>
         <th>email</th>
-        <th></th>
+        <th>Role</th>
+        <th>Action</th>
       </tr>
     </thead>
     {
@@ -47,6 +58,7 @@ const AllUsers = () => {
           <th>{idx+1}</th>
           <td>{user.name}</td>
           <td>{user.email}</td>
+          <td><button onClick={()=>makeadmin(user._id)} className="btn">{user.role==='admin'?'admin':'make admin'}</button></td>
           <td><button onClick={()=>deleteuser(user._id)} className='btn'>remove</button></td>
         </tr>
       

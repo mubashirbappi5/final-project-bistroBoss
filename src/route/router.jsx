@@ -13,6 +13,8 @@ import Contact from '../Pages/Contact/ContactPage/Contact';
 import Desboard from '../Pages/Desboard/Desboard';
 import Mycarts from '../Pages/Desboard/Mycart/Mycarts';
 import AllUsers from '../Pages/Desboard/All users/AllUsers';
+import PrivateRoute from './PrivateRoute';
+import Adminroute from './Adminroute';
 
  export const router = createBrowserRouter([
     {
@@ -48,16 +50,16 @@ import AllUsers from '../Pages/Desboard/All users/AllUsers';
     },
     {
       path:'desboard',
-      element:<Desboard/>,
+      element:<PrivateRoute><Desboard/></PrivateRoute>,
       children:[
         {
           path:'mycart',
-          element:<Mycarts/>,
+          element:<PrivateRoute><Mycarts/></PrivateRoute>,
 
         },
         {
           path:'alluser',
-          element:<AllUsers/>
+          element:<Adminroute><AllUsers/></Adminroute>
 
         }
       ]
