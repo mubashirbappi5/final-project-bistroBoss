@@ -2,6 +2,7 @@ import React from 'react';
 import ShareTitle from '../../Shared/ShareTitle';
 import useCarts from '../../../Hooks/useCarts';
 import useAxios from '../../../Hooks/useAxios';
+import { Link } from 'react-router-dom';
 
 const Mycarts = () => {
     const [cart,refetch] = useCarts()
@@ -25,7 +26,9 @@ const Mycarts = () => {
                <div className='flex justify-between'>
                <h1>Total orders:{cart.length}</h1>
                 <h1>Total price: {totalprice}</h1>
-                <button className="btn">Pay</button>
+                {
+                  cart.length >0 ? <Link to={'/desboard/pay'}><button className="btn">Pay</button></Link>:<Link className='btn' to={'/order'}>Add to Cart</Link>
+                }
 
                </div>
                <div>

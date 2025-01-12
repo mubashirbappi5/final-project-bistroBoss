@@ -18,6 +18,7 @@ import Adminroute from './Adminroute';
 import AddItem from '../Pages/Desboard/ADD Item/AddItem';
 import ManageItem from '../Pages/Desboard/Manage Item/ManageItem';
 import UpdateMenu from '../Pages/Desboard/Manage Item/UpdateMenu';
+import PayNow from '../Pages/Desboard/Payment/PayNow';
 
  export const router = createBrowserRouter([
     {
@@ -83,7 +84,14 @@ import UpdateMenu from '../Pages/Desboard/Manage Item/UpdateMenu';
           element:<UpdateMenu/>,
           loader:({params})=>fetch(`http://localhost:3000/menu/${params.id}`)
 
-        }
+        },
+        {
+          path:'/desboard/pay',
+          element:<PayNow/>,
+         
+
+        },
+
       ]
     }
   ]);
