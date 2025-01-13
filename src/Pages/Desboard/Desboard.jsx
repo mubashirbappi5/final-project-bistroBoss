@@ -23,7 +23,7 @@ const Desboard = () => {
                   <ul className='menu font-semibold'>
                 <li><NavLink to={'/'} >User Home</NavLink></li>
                 <li><NavLink to={'des'} >Reservation</NavLink></li>
-                <li><NavLink to={'h'}>Payment history</NavLink></li>
+                <li><NavLink to={'history'}>Payment history</NavLink></li>
                 <li><NavLink to={'mycart'}>My cart</NavLink></li>
                 <li><NavLink to={'h'}>Add review</NavLink></li>
                 <li><NavLink to={'h'}>My booking</NavLink></li>

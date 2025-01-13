@@ -11,7 +11,7 @@ const Chackout = () => {
     const stripe = useStripe();
     const elements = useElements();
     const axiosscure = useAxios();
-    const [cart] = useCarts()
+    const [cart,refetch] = useCarts()
     const {user}=useAuth()
     const price = cart.reduce((total,item)=>total+item.price,0)
     useEffect(()=>{
@@ -61,7 +61,25 @@ const Chackout = () => {
         else{
             console.log(paymentIntent)
             if(paymentIntent.status==='succeeded'){
-                alert('payment succesful!')
+               
+
+
+                // save payment
+                const payment = {
+                  email:user.email,
+                  price:price,
+                  transactionId:paymentIntent.id,
+                  date:new Date(),
+                  cartsId:cart.map(item=>item._id),
+                  menuId:cart.map(item=>item.menuId),
+                    status: 'pending'
+
+                }
+                const res = await axiosscure.post('/payments', payment)
+                refetch();
+                if (res.data?.paymentResult?.insertedId) {
+                  alert('payment succesful!')
+                }
             }
         }
        

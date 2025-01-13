@@ -19,6 +19,7 @@ import AddItem from '../Pages/Desboard/ADD Item/AddItem';
 import ManageItem from '../Pages/Desboard/Manage Item/ManageItem';
 import UpdateMenu from '../Pages/Desboard/Manage Item/UpdateMenu';
 import PayNow from '../Pages/Desboard/Payment/PayNow';
+import PayHistory from '../Pages/Desboard/history pay/PayHistory';
 
  export const router = createBrowserRouter([
     {
@@ -88,6 +89,12 @@ import PayNow from '../Pages/Desboard/Payment/PayNow';
         {
           path:'/desboard/pay',
           element:<PayNow/>,
+         
+
+        },
+        {
+          path:'history',
+          element:<PayHistory/>,
          
 
         },
